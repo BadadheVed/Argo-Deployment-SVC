@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: next-pod
+spec:
+  containers:
+  - name: next-app
+    image: ved104/next-argo:77ff627c75c681ad0b09492fce7754ba89ea8bb9
+    ports:
+    - containerPort: 3000
+    

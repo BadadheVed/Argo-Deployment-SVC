@@ -35,10 +35,10 @@ jobs:
               run: |
 
                   git clone https://github.com/BadadheVed/Argo-Deployment-SVC.git
+                  cd Argo-Deployment-SVC
 
 
-
-                  sed -i 's|image: ved104/next-argo:.*|image: ved104/next-argo:${{ github.sha }}|' manifest.yml
+                  sed -i 's|image: ved104/next-argo:.*|image: ved104/next-argo:${{ github.sha }}|' pod.yml
 
 
                   git config user.name "GitHub Actions Bot"
