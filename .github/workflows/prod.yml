@@ -38,7 +38,7 @@ jobs:
                   cd Argo-Deployment-SVC
 
 
-                  sed -i 's|image: ved104/next-argo:.*|image: ved104/next-argo:${{ github.sha }}|' pod.yml
+                  sed -i 's|image: ved104/next-argo:.*|image: ved104/next-argo:${{ github.sha }}|' ops/pod.yml
 
 
                   git config user.name "GitHub Actions Bot"
