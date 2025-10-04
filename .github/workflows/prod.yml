@@ -1,4 +1,4 @@
-name: Continuous Deployment (Prod)
+name: Continuous Deployment
 
 on:
     push:
@@ -28,3 +28,25 @@ jobs:
                   file: Dockerfile
                   push: true
                   tags: ved104/next-argo:${{ github.sha }}
+
+            - name: Clone staging-ops repo, update image tags, and push tags
+              env:
+                  PAT: ${{ secrets.PAT }}
+              run: |
+
+                  git clone https://github.com/BadadheVed/Argo-Deployment-SVC.git
+
+
+
+                  sed -i 's|image: ved104/next-argo:.*|image: ved104/next-argo:${{ github.sha }}|' manifest.yml
+
+
+                  git config user.name "GitHub Actions Bot"
+                  git config user.email "actions@github.com"
+
+
+                  git add .
+                  git commit -m "Update server image tags to ${{ github.sha }}"
+
+
+                  git push https://${{ secrets.PAT }}@github.com/BadadheVed/Argo-Deployment-SVC.git main
